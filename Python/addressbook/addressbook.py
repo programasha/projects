@@ -1,19 +1,24 @@
 d = {}
+k = 0
 while True:
     action = input("Enter command (add, search, delete, edit, exit, print): ")
     if action == "add":
         name = input("Enter the name: ")
         num = input("Enter the number: ")
         if name in d:
-            ans = input("Do you want to change? ")
+            k = k+1
+            ans = input("Do you want to change?(yes,no) ")
             if ans == "no":
-                name = name + "*"
+                name = name + k*"*"
         d[name] = num
     elif action == "search":
         name = input("Enter the name: ")
-        if name in d:
-            print(name + " has number " + d[name])
-        else:
+        p = 0
+        for i in d:
+            if name in i:
+                p = 1
+                print(i + " has number " + d[i])
+        if p == 0:
             print("Name \"" + name + "\" not found")
     elif action == "delete":
         name = input("Enter the name: ")
